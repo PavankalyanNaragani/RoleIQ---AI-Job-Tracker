@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Outfit:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-base: #f5f4ff;
+  --bg-surface: #ffffff;
+  --purple: #7c3aed;
+  --purple-light: #8b5cf6;
+  --blue: #3b82f6;
+  --blue-dark: #2563eb;
+  --text-primary: #1a1040;
+  --text-secondary: #4b3f72;
+  --text-muted: #9589b8;
+  --border: rgba(124, 58, 237, 0.12);
+}
+
+/* ===========================
+   BASE
+   =========================== */
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+  background-color: #f5f4ff;
+  color: #1a1040;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===========================
+   SCROLLBAR
+   =========================== */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #8b5cf6, #3b82f6);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #7c3aed, #2563eb);
+}
+
+::selection {
+  background-color: rgba(139, 92, 246, 0.2);
+  color: #1a1040;
+}
+
+/* ===========================
+   GRADIENTS (reusable)
+   =========================== */
+.gradient-hero {
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 30%, #3b82f6 100%);
+}
+
+.gradient-btn {
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 50%, #3b82f6 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #7c3aed 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===========================
+   COMPONENT LIBRARY
+   =========================== */
+@layer components {
+
+  /* --- White Cards --- */
+  .glass-card {
+    background: #ffffff;
+    border: 1px solid rgba(124, 58, 237, 0.1);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(124, 58, 237, 0.06);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .glass-card:hover {
+    border-color: rgba(124, 58, 237, 0.25);
+    box-shadow: 0 12px 40px rgba(124, 58, 237, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .glass-card-strong {
+    background: #ffffff;
+    border: 1px solid rgba(124, 58, 237, 0.15);
+    box-shadow: 0 8px 32px rgba(124, 58, 237, 0.1);
+  }
+
+  /* --- Buttons --- */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm text-white transition-all duration-300 active:scale-95;
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 50%, #3b82f6 100%);
+    box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 8px 24px rgba(124, 58, 237, 0.5);
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+  }
+  .btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 active:scale-95;
+    background: #f0ebff;
+    border: 1px solid rgba(124, 58, 237, 0.2);
+    color: #7c3aed;
+  }
+  .btn-secondary:hover {
+    background: #e9e0ff;
+    border-color: rgba(124, 58, 237, 0.4);
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-sm transition-all duration-300 active:scale-95;
+    color: #7c3aed;
+  }
+  .btn-ghost:hover {
+    background: rgba(124, 58, 237, 0.08);
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-xl font-bold text-sm transition-all duration-300 active:scale-95;
+    background: #fff1f1;
+    border: 1px solid rgba(239,68,68,0.2);
+    color: #dc2626;
+  }
+  .btn-danger:hover {
+    background: #ffe4e4;
+    border-color: rgba(239,68,68,0.4);
+    transform: translateY(-1px);
+  }
+
+  /* --- Form Inputs --- */
+  .form-input {
+    @apply w-full rounded-xl px-4 py-3 text-sm transition-all duration-300 outline-none;
+    background: #ffffff;
+    border: 1.5px solid rgba(124, 58, 237, 0.15);
+    color: #1a1040;
+  }
+  .form-input::placeholder {
+    color: #c4b8d8;
+  }
+  .form-input:focus {
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+    transform: translateY(-1px);
+  }
+
+  /* --- Badges --- */
+  .badge {
+    @apply inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest;
+  }
+
+  .badge-purple {
+    @apply badge;
+    background: #f0ebff;
+    border: 1px solid rgba(124, 58, 237, 0.2);
+    color: #7c3aed;
+  }
+
+  /* --- Page Header --- */
+  .page-header {
+    @apply relative rounded-3xl p-8 mb-8 overflow-hidden;
+    background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 35%, #3b82f6 100%);
+    box-shadow: 0 8px 32px rgba(124, 58, 237, 0.2);
+  }
+
+  /* --- Stat Card --- */
+  .stat-card {
+    @apply glass-card rounded-2xl p-6 relative overflow-hidden;
+  }
+  .stat-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #7c3aed, #3b82f6);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .stat-card:hover::after {
+    opacity: 1;
+  }
+
+  /* --- Skeleton --- */
+  .skeleton {
+    background: linear-gradient(90deg, #f0ebff 25%, #e9e0ff 50%, #f0ebff 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+  }
+
+  /* --- Divider --- */
+  .divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.1), transparent);
+  }
+
+  /* --- Nav active indicator --- */
+  .nav-active-dot {
+    @apply absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-5 rounded-full;
+    background: linear-gradient(180deg, #7c3aed, #3b82f6);
+  }
+}
+
+/* ===========================
+   ANIMATIONS
+   =========================== */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.96); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
+@keyframes bounceSlow {
+  0%, 100% { transform: translateY(-5px) rotate(-6deg); }
+  50% { transform: translateY(5px) rotate(-6deg); }
+}
+
+.animate-bounce-slow { animation: bounceSlow 3s ease-in-out infinite; }
+.animate-fade-in  { animation: fadeIn  0.5s ease-out forwards; }
+.animate-slide-up { animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-scale-in { animation: scaleIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
